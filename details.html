@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Details</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f8ff;
+        }
+        .details-container {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container details-container">
+        <h3 class="text-center">Password Details</h3>
+        <div id="password-details" class="mt-4">
+            <!-- Password details will be displayed here -->
+        </div>
+        <a href="dashboard.html" class="btn btn-primary mt-3">Back to Dashboard</a>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const params = new URLSearchParams(window.location.search);
+            const index = params.get('index');
+            const passwords = JSON.parse(localStorage.getItem('passwords')) || [];
+            if (passwords[index]) {
+                const password = passwords[index];
+                const detailsContainer = document.getElementById('password-details');
+                detailsContainer.innerHTML = `
+                    <p><strong>Website:</strong> ${password.website}</p>
+                    <p><strong>Username:</strong> ${password.username}</p>
+                    <p><strong>Password:</strong> ${password.password}</p>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>
